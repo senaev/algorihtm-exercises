@@ -331,3 +331,55 @@ function (arr) {
 [] = 0
 [-1, -2, -1, 1, -4, 5, -1, 7, -6, -1] = 11
 ```
+
+## spiral square martix
+
+```javascript
+function (n) {
+    const getNumber = (x, y) => {
+        return n * x + y + 1;
+    }
+
+    const circle = (size) => {
+        if (size === 1) {
+            return [[0, 0]];
+        }
+
+        const arr = [];
+        for (let i = 0; i < size; i++) {
+            arr.push([0, i]);
+        }
+        for (let i = 1; i < size - 1; i++) {
+            arr.push([i, size - 1]);
+        }
+        
+        const { length } = arr;
+        for (let i = 0; i < length; i++) {
+            arr.push([size - arr[i][0] - 1, size - arr[i][1] - 1]);
+        }
+
+        return arr;
+    };
+
+    const nums = []
+    for (let i = 0; i < n; i += 2) {
+        const offset = i / 2;
+        const coords = circle(n - i);
+        
+        for (let [x, y] of coords) {
+            nums.push(getNumber(x + offset, y + offset));
+        }
+    }
+
+    return nums;
+}
+
+0 = []
+1 = [1]
+2 = [1,2,4,3]
+3 = [1,2,3,6,9,8,7,4,5]
+4 = [1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10]
+5 = [1,2,3,4,5,10,15,20,25,24,23,22,21,16,11,6,7,8,9,14,19,18,17,12,13]
+6 = [1,2,3,4,5,6,12,18,24,30,36,35,34,33,32,31,25,19,13,7,8,9,10,11,17,23,29,28,27,26,20,14,15,16,22,21]
+100 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, ...... ,4852,4952,5052,5152,5151,5150,5149,5049,4949,4950,4951,5051,5050]
+```
