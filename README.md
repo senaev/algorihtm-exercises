@@ -282,3 +282,28 @@ function(head) {
     return prev;
 }
 ```
+
+### find all permutations
+
+```javascript
+(nums) => {
+    if (nums.length === 1) {
+        return [nums];
+    }
+
+    const numsPermutationsArray = [];
+    
+    
+    for (let i = 0; i < nums.length; i++) {
+        const otherNumbers = nums.slice(0, i).concat(nums.slice(i + 1));
+
+        const childPermutations = findPermutations(otherNumbers);
+
+        for (let k = 0; k < childPermutations.length; k++) {
+            numsPermutationsArray.push([nums[i], ...childPermutations[k]])
+        }
+    }
+    
+    return numsPermutationsArray;
+}
+```
