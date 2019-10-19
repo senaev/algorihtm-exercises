@@ -141,3 +141,64 @@ const x = {
     return arr;
 })(x)
 ```
+
+##valid parentheses
+
+###1
+
+```javascript
+function(s) {
+    while (true) {
+        const nextStr = s
+            .replace('()', '')
+            .replace('{}', '')
+            .replace('[]', '');
+        
+        if (nextStr.length === 0) {
+            return true;
+        }
+        
+        if (nextStr.length === s.length) {
+            return false;
+        }
+        
+        s = nextStr;
+    }
+}
+```
+
+###2
+
+```javascript
+function(s) {
+    const stack = [];
+    
+    const open = '([{';
+    const close = ')]}';
+    
+    for (let i = 0; i < s.length; i++) {
+        const sym = s[i];
+        
+        const openIndex = open.indexOf(sym);
+        const closeIndex = close.indexOf(sym);
+
+        if (openIndex > -1) {
+            stack.push(openIndex);
+        } else if (closeIndex > -1) {
+            if (stack.length === 0) {
+                return false;
+            }
+            
+            const lastInStack = stack[stack.length - 1];
+            
+            if (closeIndex !== lastInStack) {
+                return false;
+            }
+
+            stack.pop();
+        }
+    }
+    
+    return stack.length === 0;
+};
+```
