@@ -64,6 +64,28 @@
 }
 ```
 
+## n-array tree preorder traversal
+
+```javascript
+(root) => {
+    const arr = [];
+    
+    if (!root) {
+        return arr;
+    }
+    
+    const traverseChild = (node) => {
+        arr.push(node.val);
+        
+        node.children.forEach(traverseChild);
+    }
+    
+    traverseChild(root);
+    
+    return arr;
+}
+```
+
 ## n-array tree level order traversal
 
 ```javascript
