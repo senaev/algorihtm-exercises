@@ -431,3 +431,48 @@ function (n) {
     return nums;
 };
 ```
+
+## place seven queens
+
+```javascript
+(function findVariant(queen, freeFields, queens) {
+    function hasIntersections(queen, {x, y}) {
+        if (queen.x === x || queen.y === y) {
+            return true;
+        }
+
+        return Math.abs(queen.x - x) === Math.abs(queen.y - y);
+    }
+
+    function findFreeFields(queen, freeFields) {
+        return freeFields.filter((field) => {
+            return !hasIntersections(queen, field);
+        })
+    }
+
+    const freeWithQueen = findFreeFields(queen, freeFields);
+
+    if (freeWithQueen.length === 0) {
+        if (queens.length > 7) {
+            return queens;
+        }
+    } else {
+        for (const newQueenPosition of freeWithQueen) {
+            const variant = findVariant(newQueenPosition, freeWithQueen, [...queens, newQueenPosition]);
+
+            if (variant) {
+                return variant;
+            }
+        }
+    }
+})({x: 0, y: 0}, (() => {
+        const fields = [];
+        for (let y = 0; y < 8; y++) {
+            for (let x = 0; x < 8; x++) {
+                fields.push({x, y});
+            }
+        }
+
+        return fields;
+})(), [{x: 0, y: 0}])
+```
