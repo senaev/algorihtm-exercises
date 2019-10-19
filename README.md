@@ -383,3 +383,51 @@ function (n) {
 6 = [1,2,3,4,5,6,12,18,24,30,36,35,34,33,32,31,25,19,13,7,8,9,10,11,17,23,29,28,27,26,20,14,15,16,22,21]
 100 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, ...... ,4852,4952,5052,5152,5151,5150,5149,5049,4949,4950,4951,5051,5050]
 ```
+
+## merge sorting
+
+```javascript
+(nums) => {
+    const sortParts = (first, second) => {
+        const result = [];
+        let firstPartIndex = 0;
+        let secondPartIndex = 0;
+        
+        const resultLength = first.length + second.length;
+        for (let i = 0; i < resultLength; i++) {
+            const f = first[firstPartIndex];
+            const s = second[secondPartIndex];
+
+            if (f === undefined || f > s) {
+                result.push(s);
+                secondPartIndex++;
+            } else {
+                result.push(f);
+                firstPartIndex++;
+            }
+        }
+        
+        return result;
+    }
+    
+    let start = 0;
+    let length = 1;
+    while (length < nums.length) {
+        while (start < nums.length) {
+            const left = nums.slice(start, start + length);
+            const right = nums.slice(start + length, start + length * 2);
+
+            const sorted = sortParts(left, right); 
+            
+            nums.splice(start, length * 2, ...sorted);
+
+            start += length * 2;
+        }
+        
+        length *= 2;
+        start = 0;
+    }
+    
+    return nums;
+};
+```
