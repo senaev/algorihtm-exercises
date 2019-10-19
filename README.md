@@ -307,3 +307,27 @@ function(head) {
     return numsPermutationsArray;
 }
 ```
+
+## array max sum partition
+
+```javascript
+function (arr) {
+    let partSum = 0;
+    let maxSum = 0;
+
+    for (const val of arr) {
+        partSum += val;
+        maxSum = Math.max(partSum, maxSum);
+
+        if (partSum < 0) {
+            partSum = 0;
+        }
+    }
+
+    return maxSum;
+}
+
+[1, 2, 3, 4, 5, 6, -100, 3, 4, 5, 6, 7] = 25
+[] = 0
+[-1, -2, -1, 1, -4, 5, -1, 7, -6, -1] = 11
+```
