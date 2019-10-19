@@ -251,3 +251,34 @@ function(nums, target) {
     return -1;
 }
 ```
+
+## revert linked list
+
+```
+cocnst list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function(head) {
+    let prev = null;
+    while (head) {
+        const { next } = head;
+        head.next = prev;
+
+        prev = head;
+        head = next;
+    }
+    
+    return prev;
+}
+```
