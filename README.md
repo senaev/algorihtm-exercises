@@ -202,3 +202,27 @@ function(s) {
     return stack.length === 0;
 };
 ```
+
+## show all primes from one to N
+
+```javascript
+(n) => {
+    const arr = [];
+    const primes = []
+
+    for (let i = 2; i < n; i++) {
+        let j = 2;
+
+        if (arr[i] === undefined) {
+            primes.push(i);
+        }
+
+        while (j * i < n) {
+            arr[j * i] = 1;
+            j++;
+        }
+    }
+
+    return primes.length;
+}
+```
