@@ -432,7 +432,7 @@ function (n) {
 };
 ```
 
-## place seven queens
+## place eight queens
 
 ```javascript
 (function findVariant(queen, freeFields, queens) {
