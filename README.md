@@ -63,3 +63,59 @@
     return nums;
 }
 ```
+
+## n-array tree level order traversal
+
+```javascript
+const x = {
+    val: 1,
+    children: [
+        {
+            val: 2,
+            children: [
+                {
+                    val: 4,
+                    children: [
+                        {
+                          val: 5,
+                          children: []
+                        },
+                        {
+                          val: 6,
+                          children: []
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+          val: 3,
+          children: []
+        },
+    ]
+};
+
+((root) => {
+    const arr = [];
+    
+    if (!root) {
+        return arr;
+    }
+
+    const traverseLevel = (roots) => {
+        const nextLevel = [];
+        arr.push(roots.map(({val, children}) => {
+            nextLevel.push(...children)
+            return val;
+        }));
+
+        if (nextLevel.length) {
+            traverseLevel(nextLevel);
+        }
+    };
+
+    traverseLevel([root]);
+
+    return arr;
+})(x)
+```
