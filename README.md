@@ -41,3 +41,25 @@
     return nums;
 }
 ```
+
+## insertion sort
+
+```javascript
+(nums) => {
+    const { length } = nums;
+
+    for (let i = 1; i < length; i++) {
+        let k = i;
+        const next = nums[k];
+
+        while (k > 0 && nums[k - 1] > next) {
+            nums[k] = nums[k - 1];
+            k--;
+        }
+
+        nums[k] = next;
+    }
+    
+    return nums;
+}
+```
