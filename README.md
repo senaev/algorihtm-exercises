@@ -142,9 +142,9 @@ const x = {
 })(x)
 ```
 
-##valid parentheses
+## valid parentheses
 
-###1
+### 1
 
 ```javascript
 function(s) {
@@ -167,7 +167,7 @@ function(s) {
 }
 ```
 
-###2
+### 2
 
 ```javascript
 function(s) {
